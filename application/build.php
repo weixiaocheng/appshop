@@ -16,9 +16,10 @@ return [
     // 定义demo模块的自动生成 （按照实际定义的文件名生成）
     'api'     => [
         '__file__'   => ['common.php'],
-        '__dir__'    => ['behavior', 'controller', 'model'],
+        '__dir__'    => ['behavior', 'controller', 'model', 'validate'],
         'controller' => ['User', 'Address', 'Home'],
-        'model'      => ['User', 'Address'],
+        'model'      => ['BaseUser', 'AddressModel'],
+        'validate'   => ['User', 'Address'],
 //        'view'       => ['index/index'],
     ],
 

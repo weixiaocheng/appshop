@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "296bd8a1d28e39d56dcd80ce7be249f3",
+    "content-hash": "d81a9e90326d1e0e0571babd2d8d60b1",
     "packages": [
         {
             "name": "topthink/framework",
@@ -58,6 +58,42 @@
             "time": "2019-01-30T06:38:38+00:00"
         },
         {
+            "name": "topthink/think-helper",
+            "version": "v1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/top-think/think-helper.git",
+                "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/top-think/think-helper/zipball/5f92178606c8ce131d36b37a57c58eb71e55f019",
+                "reference": "5f92178606c8ce131d36b37a57c58eb71e55f019",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "think\\helper\\": "src"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "yunwuxin",
+                    "email": "448901948@qq.com"
+                }
+            ],
+            "description": "The ThinkPHP5 Helper Package",
+            "time": "2018-10-05T00:43:21+00:00"
+        },
+        {
             "name": "topthink/think-installer",
             "version": "v2.0.0",
             "source": {
@@ -97,12 +133,59 @@
                 }
             ],
             "time": "2018-05-11T06:45:42+00:00"
+        },
+        {
+            "name": "weiwei/api-doc",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zhangweiwei0326/api-doc.git",
+                "reference": "8f373e8eec8a8876aed8057889721e539f957737"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zhangweiwei0326/api-doc/zipball/8f373e8eec8a8876aed8057889721e539f957737",
+                "reference": "8f373e8eec8a8876aed8057889721e539f957737",
+                "shasum": ""
+            },
+            "require": {
+                "topthink/think-helper": ">=1.0.4",
+                "topthink/think-installer": ">=1.0.10"
+            },
+            "type": "think-extend",
+            "extra": {
+                "think-config": {
+                    "doc": "src/config.php"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Api\\Doc\\": "src"
+                },
+                "files": [
+                    "src/helper.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "weiwei",
+                    "email": "1763692101@qq.com"
+                }
+            ],
+            "description": "The ThinkPHP5 Api Doc Package",
+            "time": "2018-06-04T08:09:16+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "weiwei/api-doc": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

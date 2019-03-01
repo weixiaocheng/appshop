@@ -3,7 +3,7 @@ namespace app\api\model;
 
 use think\Model;
 
-class Address extends Model
+class BaseUser extends Model
 {
 
 }
