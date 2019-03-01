@@ -39,9 +39,10 @@ class User extends Controller
         }
 
         // 开始验证传入的值
-        $userinfo = BaseUser::get(['user_name'  => $passData['name']]);
+        $userinfo = BaseUser::get(['user_phone'  => $passData['name']]);
         if (empty($userinfo)) {
             return showJson([],false,400, '用户不存在');
         }
+        return showJson($userinfo);
     }
 }
