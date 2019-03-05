@@ -31,19 +31,19 @@ class User extends BaseCrtl
         $data = [];
         if ($this->request->isPost() == false)
         {
-            return showJson($data,true,400,'请使用post进行网络请求');
+            return showJson($data,400,400,'请使用post进行网络请求');
         }
         $passData = input('post.');
 
         $validate = new \app\api\validate\User();
         if (!$validate ->check($passData)) {
-            return showJson($data,true,400,$validate->getError());
+            return showJson($data,400,400,$validate->getError());
         }
 
         // 开始验证传入的值
         $userinfo = BaseUser::get(['user_name'  =>  $passData['name']]);
         if (empty($userinfo)) {
-            return showJson([],true,400, '用户不存在');
+            return showJson([],400,400, '用户不存在');
         }
 
         if ($userinfo['password'] == $passData['password'])
@@ -51,7 +51,7 @@ class User extends BaseCrtl
             $userinfo['token'] = token::saveTokenWithUserId($userinfo['user_id']);
             return showJson($userinfo);
         }else {
-            return showJson([],true,401, '用户密码错误');
+            return showJson([],400,401, '用户密码错误');
         }
 
     }
@@ -60,7 +60,7 @@ class User extends BaseCrtl
         $data = [];
         if ($this->request->isPost() == false)
         {
-            return showJson($data,true,400,'请使用post进行网络请求');
+            return showJson($data,400,400,'请使用post进行网络请求');
         }
         $passData = input('post.');
 
