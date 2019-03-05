@@ -19,7 +19,7 @@ return [
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
         'controller' => ['User', 'Address', 'Home','BaseCrtl'],
         'model'      => ['BaseUser', 'AddressModel'],
-        'validate'   => ['User', 'Address', 'BaseValidate'],
+        'validate'   => ['User', 'Address', 'BaseValidate', 'UserRegister'],
         'service'    => ['token'],
 //        'view'       => ['index/index'],
     ],

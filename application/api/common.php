@@ -9,13 +9,17 @@
  */
 function showJson($data,$code = 200, $isError = false,  $msg = '操作成功')
 {
-    if ($code !== 200)
+    if ($code != 200)
     {
         $data = [];
         $isError = true;
-        $msg = errorCodeArray($code);
+        if ($msg == '操作成功')
+        {
+            $msg = errorCodeArray($code);
+        }
+
     };
-    errorCodeArray($code);
+
     $result = [
         'isError' => $isError,
         'code' => $code,
@@ -72,7 +76,9 @@ function errorCodeArray($code) {
         // 关于用户
         4001 => '密码错误',
         4002 => '用户不存在',
-        4003 => '用户名称已存在'
+        4003 => '用户名称已存在',
+        4004 => '注册失败'
+
     ];
-    return $errorArr[$code];
+    return $errorArr[$code] ? : "请联系客服".$code;
 }
