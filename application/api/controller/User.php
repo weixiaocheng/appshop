@@ -2,6 +2,7 @@
 namespace app\api\controller;
 use app\api\model\BaseUser;
 use app\api\model\UserModel;
+use app\api\service\token;
 use think\Controller;
 use think\Request;
 use think\db;
@@ -10,7 +11,7 @@ use think\db;
  * @description 主要用于用户登录 注册 忘记密码
  * @author 微笑城
  */
-class User extends Controller
+class User extends BaseCrtl
 {
     /**
      * @title  loginApp
@@ -22,14 +23,15 @@ class User extends Controller
      * @param name:password type:string require:1 default:1 other: desc:用户密码
      * Date: 2019-03-01
      * Time: 16:11
-     * @return \think\response\Json
+     * @return name:名称
      */
     public function loginApp()
     {
+
         $data = [];
         if ($this->request->isPost() == false)
         {
-            return showJson($data,false,200,'请使用post进行网络请求');
+            return showJson($data,true,400,'请使用post进行网络请求');
         }
         $passData = input('post.');
 
@@ -39,10 +41,28 @@ class User extends Controller
         }
 
         // 开始验证传入的值
-        $userinfo = BaseUser::get(['user_phone'  => $passData['name']]);
+        $userinfo = BaseUser::get(['user_name'  =>  $passData['name']]);
         if (empty($userinfo)) {
-            return showJson([],false,400, '用户不存在');
+            return showJson([],true,400, '用户不存在');
         }
-        return showJson($userinfo);
+
+        if ($userinfo['password'] == $passData['password'])
+        {
+            $userinfo['token'] = token::saveTokenWithUserId($userinfo['user_id']);
+            return showJson($userinfo);
+        }else {
+            return showJson([],true,401, '用户密码错误');
+        }
+
+    }
+
+    public function userRegisterApp () {
+        $data = [];
+        if ($this->request->isPost() == false)
+        {
+            return showJson($data,true,400,'请使用post进行网络请求');
+        }
+        $passData = input('post.');
+
     }
 }
