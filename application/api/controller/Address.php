@@ -1,7 +1,7 @@
 <?php
 namespace app\api\controller;
 
-class Address
+class Address extends BaseCrtl
 {
 
 }

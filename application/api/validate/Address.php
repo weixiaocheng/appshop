@@ -1,7 +1,7 @@
 <?php
 namespace app\api\validate;
 
-class Address
+class Address extends BaseValidate
 {
 
 }

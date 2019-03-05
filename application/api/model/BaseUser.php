@@ -9,3 +9,13 @@ class BaseUser extends Model
 
     protected $connection = 'db_config';
 }
+
+
+class UserReister extends Model
+{
+    protected $table = 'base_user';
+
+    protected $connection = 'db_config';
+
+
+}

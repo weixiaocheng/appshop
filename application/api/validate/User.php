@@ -3,7 +3,7 @@ namespace app\api\validate;
 
 use think\Validate;
 
-class User extends Validate
+class User extends BaseValidate
 {
     protected $rule = [
         'name' => 'require|max:25',
@@ -15,3 +15,4 @@ class User extends Validate
       'password.require' => '密码不能为空',
     ];
 }
+
