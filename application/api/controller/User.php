@@ -90,7 +90,7 @@ class User extends BaseCrtl
         }
 
         $userRegister = new \app\api\model\UserReister();
-        $userRegister -> name = $passData['name'];
+        $userRegister -> user_name = $passData['name'];
         $userRegister -> password = $passData['password'];
         $userRegister -> code = $passData['code'];
         $result = $userRegister->save();
