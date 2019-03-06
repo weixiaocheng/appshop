@@ -103,8 +103,16 @@ function errorCodeArray($code) {
         4001 => '密码错误',
         4002 => '用户不存在',
         4003 => '用户名称已存在',
-        4004 => '注册失败'
-
+        4004 => '注册失败',
+        // 关于验证码
+        3001 => '发送验证码失败',
+        3002 => '验证码验证失败',
+        3003 => '手机号不存在对应的验证码',
+        3004 => '验证码错误'
     ];
-    return $errorArr[$code] ? : "请联系客服".$code;
+
+    if (in_array($code,$errorArr)){
+        return $errorArr[$code];
+    }
+    return  "请联系客服".$code;
 }

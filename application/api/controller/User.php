@@ -4,6 +4,7 @@ use app\api\model\BaseUser;
 use app\api\model\UserModel;
 use app\api\service\token;
 
+use app\api\service\valiCode;
 use app\api\validate\UserRegister;
 use app\api\validate\UserReister;
 use think\Controller;
@@ -65,7 +66,7 @@ class User extends BaseCrtl
      * @author 微笑城
      * @url /api/User/userRegisterApp
      * @param name:id type:int require:1 default:1 other: desc:唯一ID
-     * @return \think\response\Json
+     * @return name:名称
      * Date: 2019-03-05
      * Time: 18:46
      */
@@ -90,7 +91,11 @@ class User extends BaseCrtl
         }
 
         #检查验证码是否正确
-
+        $code = valiCode::valicode($passData['mobile'],$passData['code'],1);
+        if ($code !== 200)
+        {
+            return showJson([], $code);
+        }
 
         $userRegister = new \app\api\model\UserReister();
         $userRegister -> user_name = $passData['name'];
@@ -121,4 +126,6 @@ class User extends BaseCrtl
         // 检查用户是否存在
 
     }
+
+
 }
