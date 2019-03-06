@@ -17,7 +17,6 @@ function showJson($data,$code = 200, $isError = false,  $msg = '操作成功')
         {
             $msg = errorCodeArray($code);
         }
-
     };
 
     $result = [
@@ -73,7 +72,7 @@ function getValiCode($length)
     $max = strlen($strPol) - 1;
 
     for ($i = 0;
-         $i < $length;
+         strlen($str) < $length;
          $i++) {
         $str .= $strPol[rand(0, $max)];
     }
@@ -104,15 +103,15 @@ function errorCodeArray($code) {
         4002 => '用户不存在',
         4003 => '用户名称已存在',
         4004 => '注册失败',
+        4005 => '手机号码已注册',
+        4006 => '手机号码不存在',
         // 关于验证码
         3001 => '发送验证码失败',
         3002 => '验证码验证失败',
         3003 => '手机号不存在对应的验证码',
-        3004 => '验证码错误'
+        3004 => '验证码错误',
+        3005 => '验证码过期'
     ];
 
-    if (in_array($code,$errorArr)){
-        return $errorArr[$code];
-    }
-    return  "请联系客服".$code;
+    return $errorArr[$code];
 }

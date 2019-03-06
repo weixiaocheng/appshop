@@ -15,7 +15,7 @@ class valiCode
      * valitype 类型 1.注册 2.登录 3.找回密码 4.修改交易密码
      * Date: 2019-03-06
      * Time: 10:47
-     * @return boolean
+     * @return code;
      */
     public static function senderCode($mobile, $type)
     {
@@ -25,15 +25,22 @@ class valiCode
         # 判断手机号码是否存在
         if (empty($result) == false)
         {
-            ValiCodeDB::update(["code" => $code], ['mobile' => $mobile]);
-            return true;
+            ValiCodeDB::update([
+                "code" => $code,
+                'valitype' => $type
+            ], ['mobile' => $mobile]);
+            return 200;
         }
 
         $codem = new ValicodeDB();
         $codem ->mobile = $mobile;
         $codem ->code = $code;
         $codem ->valitype = $type;
-        return $codem->save();
+        if ($codem->save())
+        {
+            return 200;
+        }
+        return 3001;
     }
 
     /**
@@ -55,6 +62,12 @@ class valiCode
         if (empty($result) == true)
         {
             return 3003;
+        }
+
+
+        if ($result['code'] == null)
+        {
+            return 3005;
         }
 
         if ($code != $result['code'])
