@@ -11,6 +11,7 @@ return [
         //需要生成文档的类
         'app\api\controller\User',
         'app\api\controller\BaseCrtl',
+        'app\api\controller\Home'
     ],
     'filter_method' => [
         //过滤 不解析的方法名称
