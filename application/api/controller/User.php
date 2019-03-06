@@ -20,7 +20,7 @@ class User extends BaseCrtl
      * @title  loginApp
      * @description
      * @author 微笑城
-     * @url /api/User
+     * @url /api/User/loginApp
      *
      * @param name:name type:string require:1 default:1 other: desc:用户名
      * @param name:password type:string require:1 default:1 other: desc:用户密码
@@ -63,7 +63,7 @@ class User extends BaseCrtl
      * @title  userRegisterApp
      * @description
      * @author 微笑城
-     * @url /api/
+     * @url /api/User/userRegisterApp
      * @param name:id type:int require:1 default:1 other: desc:唯一ID
      * @return \think\response\Json
      * Date: 2019-03-05
@@ -89,6 +89,9 @@ class User extends BaseCrtl
             return showJson($data, 4003);
         }
 
+        #检查验证码是否正确
+
+
         $userRegister = new \app\api\model\UserReister();
         $userRegister -> user_name = $passData['name'];
         $userRegister -> password = $passData['password'];
@@ -99,5 +102,23 @@ class User extends BaseCrtl
         }else {
             return showJson([],4004);
         }
+    }
+
+    public function forgetPassword()
+    {
+        $data = [];
+        if ($this->request->isPost() == false)
+        {
+            return showJson($data, 400);
+        }
+        $passData = input('post.');
+        $validata = new UserRegister();
+        if (!$validata ->check($passData))
+        {
+            return showJson($data,400,400,$validata->getError());
+        }
+
+        // 检查用户是否存在
+
     }
 }

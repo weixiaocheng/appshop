@@ -56,6 +56,32 @@ function getRandChar($length)
 }
 
 /**
+ * @param $length
+ * @title  获取随机验证码
+ * @description
+ * @author 微笑城
+ * @url /api/
+ * @param name:id type:int require:1 default:1 other: desc:唯一ID
+ * @return string|null
+ * Date: 2019-03-06
+ * Time: 10:39
+ */
+function getValiCode($length)
+{
+    $str = null;
+    $strPol = "0123456789";
+    $max = strlen($strPol) - 1;
+
+    for ($i = 0;
+         $i < $length;
+         $i++) {
+        $str .= $strPol[rand(0, $max)];
+    }
+
+    return $str;
+}
+
+/**
  * @param $code
  * @title  errorCodeArray
  * @description

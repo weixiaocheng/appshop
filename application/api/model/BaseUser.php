@@ -19,3 +19,10 @@ class UserReister extends Model
 
 
 }
+
+class ValiCodeDB extends Model
+{
+    protected $table = 'vali_code';
+
+    protected $connection = 'db_config';
+}

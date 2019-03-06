@@ -20,7 +20,7 @@ return [
         'controller' => ['User', 'Address', 'Home','BaseCrtl'],
         'model'      => ['BaseUser', 'AddressModel'],
         'validate'   => ['User', 'Address', 'BaseValidate', 'UserRegister'],
-        'service'    => ['token'],
+        'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
     ],
 
