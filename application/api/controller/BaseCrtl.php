@@ -4,6 +4,11 @@ namespace app\api\controller;
 use app\api\validate\ValiCode;
 use think\Controller;
 
+/**
+ * Class BaseCrtl
+ * @title 基础模块
+ * @package app\api\controller
+ */
 class BaseCrtl extends Controller
 {
     /**

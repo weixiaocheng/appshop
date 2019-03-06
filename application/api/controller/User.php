@@ -17,7 +17,7 @@ use think\db;
  * @description 主要用于用户登录 注册 忘记密码
  * @author 微笑城
  */
-class User extends BaseCrtl
+class User
 {
     /**
      * @title  用户登录
