@@ -5,10 +5,12 @@ class UserRegister extends User
 {
     protected $rule = [
         'code' => 'require|max:6',
+        'mobile' => 'require',
     ];
 
     protected $message = [
         'code.require' => '验证码不能为空',
-        'code.max' => "验证码长度不能超过6位"
+        'code.max' => "验证码长度不能超过6位",
+        'mobile' => '手机号码不能为空'
     ];
 }

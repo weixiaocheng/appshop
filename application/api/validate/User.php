@@ -15,4 +15,3 @@ class User extends BaseValidate
       'password.require' => '密码不能为空',
     ];
 }
-

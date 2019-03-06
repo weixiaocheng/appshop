@@ -19,3 +19,4 @@ class UserReister extends Model
 
 
 }
+

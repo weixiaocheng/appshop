@@ -18,9 +18,22 @@ return [
         '__file__'   => ['common.php'],
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
         'controller' => ['User', 'Address', 'Home','BaseCrtl'],
-        'model'      => ['BaseUser', 'AddressModel'],
-        'validate'   => ['User', 'Address', 'BaseValidate', 'UserRegister'],
-        'service'    => ['token'],
+        'model'      => [
+            'BaseUser',
+            'AddressModel' ,
+            'ValicodeDB',
+            'Home_BannerDB',
+            ],
+        'validate'   => [
+            'User',
+            'Address',
+            'BaseValidate',
+            'UserRegister',
+            'Valicode',
+            'ForgetPassword',
+            'LoginPassword'
+            ],
+        'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
     ],
 

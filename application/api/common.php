@@ -17,7 +17,6 @@ function showJson($data,$code = 200, $isError = false,  $msg = '操作成功')
         {
             $msg = errorCodeArray($code);
         }
-
     };
 
     $result = [
@@ -56,6 +55,32 @@ function getRandChar($length)
 }
 
 /**
+ * @param $length
+ * @title  获取随机验证码
+ * @description
+ * @author 微笑城
+ * @url /api/
+ * @param name:id type:int require:1 default:1 other: desc:唯一ID
+ * @return string|null
+ * Date: 2019-03-06
+ * Time: 10:39
+ */
+function getValiCode($length)
+{
+    $str = null;
+    $strPol = "0123456789";
+    $max = strlen($strPol) - 1;
+
+    for ($i = 0;
+         strlen($str) < $length;
+         $i++) {
+        $str .= $strPol[rand(0, $max)];
+    }
+
+    return $str;
+}
+
+/**
  * @param $code
  * @title  errorCodeArray
  * @description
@@ -77,8 +102,16 @@ function errorCodeArray($code) {
         4001 => '密码错误',
         4002 => '用户不存在',
         4003 => '用户名称已存在',
-        4004 => '注册失败'
-
+        4004 => '注册失败',
+        4005 => '手机号码已注册',
+        4006 => '手机号码不存在',
+        // 关于验证码
+        3001 => '发送验证码失败',
+        3002 => '验证码验证失败',
+        3003 => '手机号不存在对应的验证码',
+        3004 => '验证码错误',
+        3005 => '验证码过期'
     ];
-    return $errorArr[$code] ? : "请联系客服".$code;
+
+    return $errorArr[$code];
 }
