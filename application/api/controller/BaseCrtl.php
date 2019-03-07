@@ -1,6 +1,7 @@
 <?php
 namespace app\api\controller;
 
+use app\api\validate\BaseValidate;
 use app\api\validate\ValiCode;
 use think\Controller;
 
@@ -46,6 +47,30 @@ class BaseCrtl extends Controller
             }else{
                 return showJson([], 3001);
             }
+        }
+    }
+
+    /**
+     * @title  测试
+     * @description
+     * @author 微笑城
+     * @url /api/BaseCrtl/test
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-07
+     * Time: 09:42
+     * @return array:数组值
+     */
+    public function test()
+    {
+        $data = input('post.');
+        $data['version'] = $this->request->header('version');
+        $validate = new  BaseValidate();
+        if ($validate->check($data))
+        {
+            return showJson([]);
+        }else{
+            return showJson([], 400,false,$validate->getError());
         }
     }
 }
