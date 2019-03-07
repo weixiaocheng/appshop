@@ -1,5 +1,6 @@
 <?php
 namespace app\api\controller;
+use app\api\model\Home_BannerDB;
 use think\Controller;
 
 /**
@@ -23,6 +24,7 @@ class Home extends Controller
     public function homeBanner()
     {
         # 直接从数据库里面取数据就可以了 取前五条
-
+        $result = Home_BannerDB::select();
+        return showJson($result);
     }
 }

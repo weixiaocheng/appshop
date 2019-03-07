@@ -23,6 +23,7 @@ return [
             'AddressModel' ,
             'ValicodeDB',
             'Home_BannerDB',
+            'Msg_senderDB'
             ],
         'validate'   => [
             'User',
