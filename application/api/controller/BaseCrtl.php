@@ -91,9 +91,12 @@ class BaseCrtl extends Controller
         #遍历 数据库里面所有的 token 发送消息 
         $msgDB = new Msg_senderDB();
         $tokens = $msgDB::column('mes_token');
-//        dump($tokens);
-//        $apnback = apnsMessageSender('这是测试兮兮',$tokens[0],2,false);
-//        dump($apnback);
+        foreach ($tokens as $code)
+        {
+            $apnback = apnsMessageSender('这是测试兮兮',$code,1,false);
+            dump($apnback);
+        }
+
         return showJson($tokens);
     }
 }

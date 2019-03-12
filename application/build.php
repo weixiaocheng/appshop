@@ -17,13 +17,15 @@ return [
     'api'     => [
         '__file__'   => ['common.php'],
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
-        'controller' => ['User', 'Address', 'Home','BaseCrtl'],
+        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product'],
         'model'      => [
             'BaseUser',
             'AddressModel' ,
             'ValicodeDB',
             'Home_BannerDB',
-            'Msg_senderDB'
+            'Msg_senderDB',
+            'ActivityDB',
+            'ProductDB'
             ],
         'validate'   => [
             'User',
@@ -32,7 +34,8 @@ return [
             'UserRegister',
             'Valicode',
             'ForgetPassword',
-            'LoginPassword'
+            'LoginPassword',
+            'ProductDetailValidate'
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],

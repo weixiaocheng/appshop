@@ -139,7 +139,8 @@ function apnsMessageSender($message, $token, $badge = 1 , $production = true)
     if (empty($token) || empty($message)) return false;
 
     $pass = 123456;
-    $pem_dir = "/push_production.pem";
+    $pem_dir = dirname(__FILE__) ."/push_production.pem";
+
     $ssl_url = $production ? 'ssl://gateway.push.apple.com:2195' : 'ssl://gateway.sandbox.push.apple.com:2195';
     //声音
     $sound = 'Duck.wav';
