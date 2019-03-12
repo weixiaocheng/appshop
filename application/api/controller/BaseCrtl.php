@@ -1,6 +1,8 @@
 <?php
 namespace app\api\controller;
 
+use app\api\model\Msg_senderDB;
+use app\api\validate\BaseValidate;
 use app\api\validate\ValiCode;
 use think\Controller;
 
@@ -47,5 +49,54 @@ class BaseCrtl extends Controller
                 return showJson([], 3001);
             }
         }
+    }
+
+    /**
+     * @title  测试
+     * @description
+     * @author 微笑城
+     * @url /api/BaseCrtl/test
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-07
+     * Time: 09:42
+     * @return array:数组值
+     */
+    public function test()
+    {
+        $data = input('post.');
+        $data['version'] = $this->request->header('version');
+        $validate = new  BaseValidate();
+        if ($validate->check($data))
+        {
+            return showJson([]);
+        }else{
+            return showJson([], 400,false,$validate->getError());
+        }
+    }
+
+    /**
+     * @title  获取所有的苹果设备的token
+     * @description
+     * @author 微笑城
+     * @url /api/
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-07
+     * Time: 10:42
+     * @return array:数组值
+     */
+    public function senderMessage()
+    {
+        #遍历 数据库里面所有的 token 发送消息 
+        $msgDB = new Msg_senderDB();
+        $tokens = $msgDB::column('mes_token');
+        foreach ($tokens as $code)
+        {
+            $apnback = apnsMessageSender('这是测试兮兮',$code,1,false);
+            dump($apnback);
+        }
+
+        return showJson($tokens);
     }
 }

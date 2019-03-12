@@ -115,3 +115,58 @@ function errorCodeArray($code) {
 
     return $errorArr[$code];
 }
+
+/**
+ * @param $message
+ * @param $token
+ * @param int $badge
+ * @param bool $production
+ * @title  消息推送服务
+ * @description
+ * @author 微笑城
+ * @url /api/* @param $message
+ * @param $token
+ * @param int $badge
+ * @param bool $production
+ * @method POST
+ * @param name:id type:int require:1 default:1 other: desc:唯一ID
+ * Date: 2019-03-07
+ * Time: 12:02
+ * @return array:数组值
+ */
+function apnsMessageSender($message, $token, $badge = 1 , $production = true)
+{
+    if (empty($token) || empty($message)) return false;
+
+    $pass = 123456;
+    $pem_dir = dirname(__FILE__) ."/push_production.pem";
+
+    $ssl_url = $production ? 'ssl://gateway.push.apple.com:2195' : 'ssl://gateway.sandbox.push.apple.com:2195';
+    //声音
+    $sound = 'Duck.wav';
+    $body['aps'] =[
+        'alert' => $message,
+        'sound' => $sound,
+    ];
+    if($badge > 0)
+        $body['aps']['badge'] = $badge;
+    $payload = json_encode($body);
+
+    $ctx = stream_context_create();
+    stream_context_set_option($ctx, 'ssl', 'local_cert', $pem_dir);
+    stream_context_set_option($ctx, 'ssl', 'passphrase', $pass);
+    $fp = stream_socket_client($ssl_url, $err, $errstr, 60, STREAM_CLIENT_CONNECT, $ctx);
+
+    if (!$fp) {
+         dump("Failed to connect $err $errstr\n");
+        return FALSE;
+    }
+
+    // send message
+    $msg = chr(0) . pack("n",32) . pack('H*', str_replace(' ', '', $token)) . pack("n",strlen($payload)) . $payload;
+    fwrite($fp, $msg);
+    fclose($fp);
+
+    return TRUE;
+
+}
