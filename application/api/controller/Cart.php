@@ -48,17 +48,18 @@ class Cart extends Controller
         if (empty($user)){
             return showJson([], 400, true, '用户不存在');
         }
-        if (empty($passData['page_size']))
-        {
-            $passData['page_size'] = 5;
-        }
+
         # 查询用户对于的 购物车列表里面是否包含有 商品列表
-        $result = CartDB::where(['product_id' => $passData['product_id'],'user_id' => $user['user_id']])->limit($passData['page_size'])->select();
+        $result = CartDB::where(['user_id' => $user['user_id']])->select();
         if (empty($result))
         {
             return showJson([],200);
         }
 
         return showJson($result);
+    }
+
+    public function modifQuantity() {
+
     }
 }

@@ -40,7 +40,8 @@ return [
             'ProductDetailValidate',
             'ProductListValidate',
             'ProductAddCart',
-            'CartListValidate'
+            'CartListValidate',
+            'CartModifValidate'
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
