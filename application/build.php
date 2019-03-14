@@ -47,6 +47,10 @@ return [
             'OrderListValidate', // 订单列表
             'OrderCreateValidate', // 创建订单
             'orderCancelValidate', // 取消订单
+            'AddressListValidate', // 关于地址列表的
+            'AddressAddValidate', // 添加地址
+            'AddressDelectValidate', // 删除地址
+            'AddressModifValidate', // 修改地址
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
