@@ -3,7 +3,7 @@ namespace app\api\model;
 
 use think\Model;
 
-class AddressModel extends Model
+class ShoppingCart extends Model
 {
 
 }

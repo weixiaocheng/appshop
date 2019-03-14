@@ -79,7 +79,7 @@ class BaseCrtl extends Controller
      * @title  获取所有的苹果设备的token
      * @description
      * @author 微笑城
-     * @url /api/
+     * @url /api/BaseCrtl/senderMessage
      * @method POST
      * @param name:id type:int require:1 default:1 other: desc:唯一ID
      * Date: 2019-03-07

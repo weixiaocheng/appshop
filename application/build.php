@@ -17,7 +17,7 @@ return [
     'api'     => [
         '__file__'   => ['common.php'],
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
-        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product'],
+        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product', 'Cart'],
         'model'      => [
             'BaseUser',
             'AddressModel' ,
@@ -25,7 +25,9 @@ return [
             'Home_BannerDB',
             'Msg_senderDB',
             'ActivityDB',
-            'ProductDB'
+            'ProductDB',
+            'CartDB',
+            'ShoppingCart'
             ],
         'validate'   => [
             'User',
@@ -35,7 +37,10 @@ return [
             'Valicode',
             'ForgetPassword',
             'LoginPassword',
-            'ProductDetailValidate'
+            'ProductDetailValidate',
+            'ProductListValidate',
+            'ProductAddCart',
+            'CartListValidate'
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
