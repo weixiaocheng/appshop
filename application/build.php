@@ -17,7 +17,7 @@ return [
     'api'     => [
         '__file__'   => ['common.php'],
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
-        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product', 'Cart'],
+        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product', 'Cart','Order'],
         'model'      => [
             'BaseUser',
             'AddressModel' ,
@@ -27,7 +27,8 @@ return [
             'ActivityDB',
             'ProductDB',
             'CartDB',
-            'ShoppingCart'
+            'ShoppingCart',
+            'OrderDB'
             ],
         'validate'   => [
             'User',
@@ -43,6 +44,9 @@ return [
             'CartListValidate',
             'CartModifValidate', // 购物车修改数量
             'CartDelectValidate', // 购物车删除
+            'OrderListValidate', // 订单列表
+            'OrderCreateValidate', // 创建订单
+            'orderCancelValidate', // 取消订单
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
