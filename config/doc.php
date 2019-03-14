@@ -12,7 +12,8 @@ return [
         'app\api\controller\User',
         'app\api\controller\BaseCrtl',
         'app\api\controller\Home',
-        'app\api\controller\Product'
+        'app\api\controller\Product',
+        'app\api\controller\Cart'
     ],
     'filter_method' => [
         //过滤 不解析的方法名称
