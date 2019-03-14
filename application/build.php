@@ -41,7 +41,8 @@ return [
             'ProductListValidate',
             'ProductAddCart',
             'CartListValidate',
-            'CartModifValidate'
+            'CartModifValidate', // 购物车修改数量
+            'CartDelectValidate', // 购物车删除
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],

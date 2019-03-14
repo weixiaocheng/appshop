@@ -3,6 +3,7 @@ namespace app\api\controller;
 
 use app\api\model\BaseUser;
 use app\api\model\CartDB;
+use app\api\validate\CartDelectValidate;
 use app\api\validate\CartListValidate;
 use app\api\validate\CartModifValidate;
 use think\Controller;
@@ -39,7 +40,7 @@ class Cart extends Controller
         $passData = input('get.');
 
         $validate = new CartListValidate();
-        if ($validate ->check($passData) )
+        if ($validate ->check($passData) == false)
         {
             return showJson([], 400,true, $validate->getError());
         }
@@ -89,7 +90,7 @@ class Cart extends Controller
 
         # 根据用户id 查询 商品的id
         $user_id = BaseUser::where(['token' => $passData['token']])->find()->getData('user_id');
-        dump($user_id);
+
         if (empty($user_id))
         {
             return showJson([],400, true,'用户不存在');
@@ -112,6 +113,54 @@ class Cart extends Controller
         else
         {
             return showJson([],400, true,'更新数量失败');
+        }
+    }
+
+    /**
+     * @title  购物车删除
+     * @description
+     * @author 微笑城
+     * @url /api/cart/delectWithCartId
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-14
+     * Time: 15:27
+     * @return array:数组值
+     */
+    public function delectWithCartId()
+    {
+        if ($this->request->isPost() == false)
+        {
+            return showJson([],400, false, "请使用post 网络请求");
+        }
+
+        $passData = input('post.');
+        $validata = new  CartDelectValidate();
+        if ($validata ->check($passData) == false)
+        {
+            return showJson([], 400 , true, '请使用post 进行网络请求');
+        }
+
+        # 获取用的的id
+        $user_id = BaseUser::where(['token' => $passData['token']])->find()->getData('user_id');
+        if (empty($user_id))
+        {
+            return showJson([],400, true, '用户不存在');
+        }
+
+        $result = CartDB::where(['user_id' => $user_id, 'cart_id' => $passData['cart_id']])->find();
+        if (empty($result))
+        {
+            return showJson([],400, true, '购物车商品不存在');
+        }
+        $isSuccess = CartDB::where(['user_id' => $user_id, 'cart_id' => $passData['cart_id']])->delete();
+        if ($isSuccess)
+        {
+            return showJson([]);
+        }
+        else
+            {
+            return showJson([], 400, true, '操作失败');
         }
     }
 }
