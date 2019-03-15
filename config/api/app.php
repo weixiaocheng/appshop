@@ -5,5 +5,5 @@ return [
     'default_return_type'    => 'json',
     // 出来不区分大小写
     'URL_CASE_INSENSITIVE' => true,
-    'url_convert' => false
+    'url_convert' => true,
 ];
