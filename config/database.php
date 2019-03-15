@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '111.230.31.176',
+    'hostname'        => '192.168.100.9',
     // 数据库名
     'database'        => 'findapp',
     // 用户名
     'username'        => 'root',
     // 密码
-    'password'        => 'liuliang',
+    'password'        => '123456',
     // 端口
     'hostport'        => '',
     // 连接dsn
