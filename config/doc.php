@@ -10,10 +10,10 @@ return [
     'controller' => [
         //需要生成文档的类
         'app\api\controller\User',
-        'app\api\controller\BaseCrtl',
+        'app\api\controller\Basecrtl',
         'app\api\controller\Home',
         'app\api\controller\Product',
-        'app\api\controller\Cart'
+        'app\api\controller\Cart',
     ],
     'filter_method' => [
         //过滤 不解析的方法名称
