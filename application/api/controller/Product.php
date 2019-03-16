@@ -5,7 +5,7 @@ use app\api\model\BaseUser;
 use app\api\model\CartDB;
 use app\api\model\ProductDB;
 use app\api\validate\ProductAddCart;
-use app\api\validate\productDetailValidate;
+use app\api\validate\ProductDetailValidate;
 use app\api\validate\ProductListValidate;
 use think\Controller;
 use think\Request;
