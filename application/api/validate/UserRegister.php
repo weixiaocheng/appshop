@@ -6,6 +6,7 @@ class UserRegister extends User
     protected $rule = [
         'code' => 'require|max:6',
         'mobile' => 'require',
+        'password' => 'require'
     ];
 
     protected $message = [
