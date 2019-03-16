@@ -61,7 +61,7 @@ class valiCode
         $result = ValicodeDB::get(['mobile' => $mobile, 'valitype' => $valiType]);
 
         // 万能验证码
-        if($code === 3301) {
+        if($code === '3301') {
             return 200;
         }
 
