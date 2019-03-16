@@ -10,7 +10,7 @@ class ValiCode extends BaseValidate
  
     protected $message = [
         'mobile.require' => '手机号码不能为空',
-        'mobile.max' => '手机号码为11wei',
+        'mobile.max' => '手机号码为11位',
         'type.require' => '验证码类型不能为空',
     ];
 }

