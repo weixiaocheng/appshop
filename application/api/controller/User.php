@@ -111,7 +111,7 @@ class User extends Controller
         $userRegister = new \app\api\model\UserReister();
         $userRegister -> user_name = $passData['name'];
         $userRegister -> password = $passData['password'];
-        $userRegister -> moblie = $passData['moblie'];
+        $userRegister -> mobile = $passData['mobile'];
 
         $result = $userRegister->save();
         if ($result) {
