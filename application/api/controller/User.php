@@ -111,7 +111,8 @@ class User extends Controller
         $userRegister = new \app\api\model\UserReister();
         $userRegister -> user_name = $passData['name'];
         $userRegister -> password = $passData['password'];
-        $userRegister -> code = $passData['code'];
+        $userRegister -> moblie = $passData['moblie'];
+
         $result = $userRegister->save();
         if ($result) {
             return showJson([]);
