@@ -68,7 +68,9 @@ class User extends Controller
      * @author 微笑城
      * @method POST
      * @url /api/User/userRegisterApp
-     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * @param name:user_name type:int require:1 default:1 other: desc:唯一ID
+     * @param name:password type:int require:1 default:1 other: desc:唯一ID
+     * @param name:mobile type:int require:1 default:1 other: desc:唯一ID
      * @return name:名称
      *
      * Date: 2019-03-05
@@ -111,7 +113,8 @@ class User extends Controller
         $userRegister = new \app\api\model\UserReister();
         $userRegister -> user_name = $passData['name'];
         $userRegister -> password = $passData['password'];
-        $userRegister -> code = $passData['code'];
+        $userRegister -> mobile = $passData['mobile'];
+
         $result = $userRegister->save();
         if ($result) {
             return showJson([]);

@@ -11,13 +11,13 @@ use think\Controller;
  * @title 基础模块
  * @package app\api\controller
  */
-class BaseCrtl extends Controller
+class Basecrtl extends Controller
 {
     /**
      * @title  发送验证码
      * @description
      * @author 微笑城
-     * @url /api/BaseCrtl/senderValicode
+     * @url /api/Basecrtl/senderValicode
      * @method POST
      * @param name:mobile type:int require:1 default:1 other: desc: 手机号码
      * @param name:type type:string require:1 default:1 other:1,2,3 desc:1:用户注册2:用户登录3:找回密码
@@ -79,7 +79,7 @@ class BaseCrtl extends Controller
      * @title  获取所有的苹果设备的token
      * @description
      * @author 微笑城
-     * @url /api/
+     * @url /api/BaseCrtl/senderMessage
      * @method POST
      * @param name:id type:int require:1 default:1 other: desc:唯一ID
      * Date: 2019-03-07

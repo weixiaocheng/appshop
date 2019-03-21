@@ -17,7 +17,7 @@ return [
     'api'     => [
         '__file__'   => ['common.php'],
         '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
-        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product'],
+        'controller' => ['User', 'Address', 'Home','BaseCrtl', 'Product', 'Cart','Order'],
         'model'      => [
             'BaseUser',
             'AddressModel' ,
@@ -25,7 +25,10 @@ return [
             'Home_BannerDB',
             'Msg_senderDB',
             'ActivityDB',
-            'ProductDB'
+            'ProductDB',
+            'CartDB',
+            'ShoppingCart',
+            'OrderDB'
             ],
         'validate'   => [
             'User',
@@ -35,7 +38,19 @@ return [
             'Valicode',
             'ForgetPassword',
             'LoginPassword',
-            'ProductDetailValidate'
+            'ProductDetailValidate',
+            'ProductListValidate',
+            'ProductAddCart',
+            'CartListValidate',
+            'CartModifValidate', // 购物车修改数量
+            'CartDelectValidate', // 购物车删除
+            'OrderListValidate', // 订单列表
+            'OrderCreateValidate', // 创建订单
+            'orderCancelValidate', // 取消订单
+            'AddressListValidate', // 关于地址列表的
+            'AddressAddValidate', // 添加地址
+            'AddressDelectValidate', // 删除地址
+            'AddressModifValidate', // 修改地址
             ],
         'service'    => ['token', 'valiCode'],
 //        'view'       => ['index/index'],
