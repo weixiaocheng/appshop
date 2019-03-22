@@ -17,7 +17,7 @@ class Address extends Controller
      * @title  添加地址
      * @description
      * @author 微笑城
-     * @url /api/
+     * @url /api/Address/addAddress
      * @method POST
      * @param name:name type:string require:1 default:1 other: desc:收件人
      * @param name:mobile type:number require:1 default:1 other: desc:联系电话
@@ -61,6 +61,7 @@ class Address extends Controller
         $address->city = $passData['city'];
         $address->area = $passData['area'];
         $address->address = $passData['address'];
+        $address->user_id = $user_id;
         return $address->save() ? showJson([]) : showJson([], 400, true, '保存失败');
     }
 
