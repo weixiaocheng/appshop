@@ -4,6 +4,7 @@ namespace app\api\controller;
 use app\api\model\AddressModel;
 use app\api\model\BaseUser;
 use app\api\validate\AddressAddValidate;
+use app\api\validate\AddressListValidate;
 use think\Controller;
 
 /**
@@ -65,5 +66,39 @@ class Address extends Controller
         return $address->save() ? showJson([]) : showJson([], 400, true, '保存失败');
     }
 
+    /**
+     * @title  获取地址列表
+     * @description
+     * @author 微笑城
+     * @url /api/Address/getAddressList
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-22
+     * Time: 16:10
+     * @return array:数组值
+     */
+    public function getAddressList () {
+        if ($this->request->isGet() == false)
+        {
+            return showJson([], 400);
+        }
 
+        $passData = input('get.');
+
+        $validata = new AddressListValidate();
+        if ($validata->check($passData) == false)
+        {
+            return showJson([], 400, true,$validata->getError());
+        }
+
+        $user_id = BaseUser::where(['token' => $passData['token']])->find()->getData('user_id');
+        if (empty($user_id))
+        {
+            return showJson([],4002);
+        }
+
+        # 获取列表
+        $result = AddressModel::where(['user_id' => $user_id]) ->select();
+        return showJson($result);
+    }
 }
