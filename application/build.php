@@ -53,6 +53,7 @@ return [
             'AddressModifValidate', // 修改地址
             ],
         'service'    => ['token', 'valiCode'],
+        'behavior' => ['CORS']
 //        'view'       => ['index/index'],
     ],
 

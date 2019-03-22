@@ -7,7 +7,7 @@ class UserRegister extends User
         'code' => 'require|max:6',
         'mobile' => 'require',
         'password' => 'require',
-        'user_name' => 'require'
+        'name' => 'require'
     ];
 
     protected $message = [
