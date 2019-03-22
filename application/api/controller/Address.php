@@ -6,6 +6,7 @@ use app\api\model\BaseUser;
 use app\api\validate\AddressAddValidate;
 use app\api\validate\AddressListValidate;
 use app\api\validate\AddressModifValidate;
+use app\api\validate\AddressDelectValidate;
 use think\Controller;
 
 /**
@@ -137,9 +138,9 @@ class Address extends Controller
         }
 
         # 查看对应的 地址是否存在
-        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id']]);
+        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id']])->find();
         if (empty($address)) {
-            return showJson([], 4002);
+            return showJson([], 6001);
         }
 
         # 开始更新
@@ -150,13 +151,64 @@ class Address extends Controller
             'city' => $passData['city'],
             'area' => $passData['area'],
             'address_id' => $passData['address_id']
-        ] );
+        ]);
 
         if ($isSuccess)
         {
             return showJson([]);
-        }else{
-            return showJson([], 400,true, '123456');
+        } else {
+            return showJson([], 400,true, '更新失败了');
         }
+    }
+
+    /**
+     * @title  删除地址
+     * @description
+     * @author 微笑城
+     * @url /api/Address/updateAddress
+     * @method PUT
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-22
+     * Time: 17:25
+     * @return array:数组值
+     */
+    public function delectAddress () {
+        if ($this->request->isPut() == false)
+        {
+            return showJson([], 400,true, '4646');
+        }
+
+        $passData = input('put.');
+
+        $valiDate = new  AddressDelectValidate();
+        if ($valiDate ->check($passData) == false)
+        {
+            return showJson([], 400, true,$valiDate->getError());
+        }
+
+        $user_id = BaseUser::where(['token' => $passData['token']]) -> find() ->getData('user_id');
+        if (empty($user_id))
+        {
+            return showJson([],4002);
+        }
+
+        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id']]) ->find();
+        if (empty($address))
+        {
+            return showJson([], 6001);
+        }
+
+        if ($address['status'] === '2')
+        {
+            return showJson([], 6001);
+        }
+
+        $isSuccess = AddressModel::update(['address_id' => $address['address_id'], 'status' => '2']);
+        if ($isSuccess){
+            return showJson([]);
+        }else{
+            return showJson([], 6001,true, '删除失败');
+        }
+
     }
 }
