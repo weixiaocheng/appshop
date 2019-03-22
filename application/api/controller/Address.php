@@ -74,9 +74,14 @@ class Address extends Controller
      * @author 微笑城
      * @url /api/Address/getAddressList
      * @method POST
-     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * @param name:token type:int require:1 default:1 other: desc:唯一ID
+     * @param name:address_id type:int require:1 default:1 other: desc:唯一ID
+     *
      * Date: 2019-03-22
      * Time: 16:10
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @return array:数组值
      */
     public function getAddressList () {
@@ -110,7 +115,13 @@ class Address extends Controller
      * @author 微笑城
      * @url /api/Address/updateAddress
      * @method POST
-     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * @param name:name type:string require:1 default:1 other: desc:收件人
+     * @param name:mobile type:number require:1 default:1 other: desc:联系电话
+     * @param name:province type:string require:1 default:1 other: desc:省份
+     * @param name:city type:string require:1 default:1 other: desc:城市
+     * @param name:area type:string require:1 default: other: desc:区/镇
+     * @param name:token type:string require:1 default other: desc:..
+     * @param name:address_id type:string require:1 default other: desc:..
      * Date: 2019-03-22
      * Time: 16:52
      * @throws \think\db\exception\DataNotFoundException
@@ -167,9 +178,13 @@ class Address extends Controller
      * @author 微笑城
      * @url /api/Address/updateAddress
      * @method PUT
-     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * @param name:token type:int require:1 default:1 other: desc:唯一ID
+     * @param name:address_id type:int require:1 default:1 other: desc:唯一ID
      * Date: 2019-03-22
      * Time: 17:25
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      * @return array:数组值
      */
     public function delectAddress () {
