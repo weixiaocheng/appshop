@@ -105,7 +105,7 @@ class Address extends Controller
         }
 
         # 获取列表
-        $result = AddressModel::where(['user_id' => $user_id]) ->select();
+        $result = AddressModel::where(['user_id' => $user_id, 'status' => !2]) ->select();
         return showJson($result);
     }
 
@@ -149,7 +149,7 @@ class Address extends Controller
         }
 
         # 查看对应的 地址是否存在
-        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id']])->find();
+        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id'], 'status' => !2])->find();
         if (empty($address)) {
             return showJson([], 6001);
         }
@@ -224,6 +224,5 @@ class Address extends Controller
         }else{
             return showJson([], 6001,true, '删除失败');
         }
-
     }
 }
