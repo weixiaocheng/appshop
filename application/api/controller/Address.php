@@ -5,6 +5,7 @@ use app\api\model\AddressModel;
 use app\api\model\BaseUser;
 use app\api\validate\AddressAddValidate;
 use app\api\validate\AddressListValidate;
+use app\api\validate\AddressModifValidate;
 use think\Controller;
 
 /**
@@ -100,5 +101,62 @@ class Address extends Controller
         # 获取列表
         $result = AddressModel::where(['user_id' => $user_id]) ->select();
         return showJson($result);
+    }
+
+    /**
+     * @title  修改收货地址
+     * @description
+     * @author 微笑城
+     * @url /api/Address/updateAddress
+     * @method POST
+     * @param name:id type:int require:1 default:1 other: desc:唯一ID
+     * Date: 2019-03-22
+     * Time: 16:52
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @return array:数组值
+     */
+    public function updateAddress () {
+        if ($this ->request ->isPost() == false) {
+            return showJson([], 400,true, '4646');
+        }
+
+        $passData = input('post.');
+
+        $validate = new AddressModifValidate();
+        if ($validate ->check($passData) == false)
+        {
+            return showJson([], 400, true,$validate->getError());
+        }
+
+        $user_id = BaseUser::where(['token' => $passData['token']])->find()->getData('user_id');
+        if (empty($user_id))
+        {
+            return showJson([],4002);
+        }
+
+        # 查看对应的 地址是否存在
+        $address = AddressModel::where(['user_id' => $user_id, 'address_id' => $passData['address_id']]);
+        if (empty($address)) {
+            return showJson([], 4002);
+        }
+
+        # 开始更新
+        $isSuccess = AddressModel::update([
+            'name' =>$passData['name'] ,
+            'mobile' => $passData['mobile'],
+            'province' => $passData['province'],
+            'city' => $passData['city'],
+            'area' => $passData['area'],
+            'address_id' => $passData['address_id']
+        ] );
+
+        if ($isSuccess)
+        {
+            return showJson([]);
+        }else{
+            return showJson([], 400,true, '123456');
+        }
     }
 }

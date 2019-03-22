@@ -1,9 +1,9 @@
 <?php
 namespace app\api\validate;
 
-use app\api\model\UserReister;
+use think\Validate;
 
-class ForgetPassword extends UserReister
+class ForgetPassword extends Validate
 {
     protected  $rule = [
         'password' => "require",
