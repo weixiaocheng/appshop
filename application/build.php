@@ -57,6 +57,15 @@ return [
         'behavior' => ['CORS']
 //        'view'       => ['index/index'],
     ],
+    'admin' => [
+        '__file__' => ['common.php'],
+        '__dir__'    => ['behavior', 'controller', 'model', 'validate', 'service'],
+        'controller' => ['User'],
+        'model' => ['User'],
+        'validate' => ['User'],
+        'service' => ['token'],
+        'behavior' => ['CORS']
+    ]
 
     // 其他更多的模块定义
 ];
