@@ -13,5 +13,4 @@ class AddressAddValidate extends Validate
         'area' => 'require|max:30',
         'token' => 'require',
     ];
-
 }

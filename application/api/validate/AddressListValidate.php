@@ -1,7 +1,11 @@
 <?php
 namespace app\api\validate;
 
-class AddressListValidate
-{
+use think\Validate;
 
+class AddressListValidate extends Validate
+{
+    protected $rule = [
+        'token' => 'require'
+    ];
 }

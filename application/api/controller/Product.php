@@ -4,6 +4,7 @@ namespace app\api\controller;
 use app\api\model\BaseUser;
 use app\api\model\CartDB;
 use app\api\model\ProductDB;
+use app\api\model\SkuDB;
 use app\api\validate\ProductAddCart;
 use app\api\validate\ProductDetailValidate;
 use app\api\validate\ProductListValidate;
@@ -47,11 +48,14 @@ class Product extends Controller
         # 开始获取数据
         $productModel = new  ProductDB();
         $resutl = $productModel::find($passData['product_id']);
+        $skuModel = new SkuDB();
+        $sku_list = $skuModel::where(['product_id' => $passData['product_id']])->select();
+//        dump($sku_list);
+        $resutl['sku_list'] = $sku_list;
         if (empty($resutl))
         {
             return showJson([],200,false,"没有商品信息");
         }
-        dump($resutl['des']);
         return showJson($resutl);
     }
 
@@ -81,7 +85,7 @@ class Product extends Controller
         {
             return showJson([], 400,true,$validate->getError());
         }
-        if (!empty($passData['page_size']))
+        if (empty($passData['page_size']))
         {
             $passData['page_size'] = 5;
         }
