@@ -81,6 +81,8 @@ class Cart extends Controller
             return showJson([],400, true,'请使用post 进行网络请求');
         }
         $passData = input('post.');
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validata = new CartModifValidate();
         if ($validata->check($passData) == false)
         {
@@ -134,6 +136,8 @@ class Cart extends Controller
         }
 
         $passData = input('post.');
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validata = new  CartDelectValidate();
         if ($validata ->check($passData) == false)
         {

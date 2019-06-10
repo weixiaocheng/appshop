@@ -116,6 +116,8 @@ class Product extends Controller
         }
 
         $passData = input('post.');
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validate = new ProductAddCart();
         if (!$validate ->check($passData))
         {

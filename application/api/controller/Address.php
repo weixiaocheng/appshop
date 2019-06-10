@@ -44,7 +44,8 @@ class Address extends Controller
         }
 
         $passData = input('post.');
-        
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validata = new AddressAddValidate();
         if ($validata ->check($passData) == false)
         {
@@ -137,7 +138,8 @@ class Address extends Controller
         }
 
         $passData = input('post.');
-
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validate = new AddressModifValidate();
         if ($validate ->check($passData) == false)
         {
@@ -196,7 +198,8 @@ class Address extends Controller
         }
 
         $passData = input('put.');
-
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $valiDate = new  AddressDelectValidate();
         if ($valiDate ->check($passData) == false)
         {

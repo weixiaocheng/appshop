@@ -42,6 +42,8 @@ class Order extends Controller
         }
 
         $passdata = input('post.');
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validate = new OrderCreateValidate();
         if ($validate ->check($passdata) == false)
         {
