@@ -15,8 +15,9 @@ class User extends Controller
      * @author 微笑城
      * @url /api/User/loginAdmin
      * @method POST
-     * @param name:id type:int require:1 default:1 other: desc:唯一ID
      * Date: 2019-03-23
+     * @param name:contact type:int require:1 default:1 other: desc:唯一ID
+     * @param name:password type:int require:1 default:1 other: desc:唯一ID
      * Time: 16:01
      * @return array:数组值
      */
