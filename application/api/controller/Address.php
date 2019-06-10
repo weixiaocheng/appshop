@@ -44,6 +44,7 @@ class Address extends Controller
         }
 
         $passData = input('post.');
+        
         $validata = new AddressAddValidate();
         if ($validata ->check($passData) == false)
         {
@@ -91,7 +92,8 @@ class Address extends Controller
         }
 
         $passData = input('get.');
-
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
         $validata = new AddressListValidate();
         if ($validata->check($passData) == false)
         {

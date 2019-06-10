@@ -38,7 +38,6 @@ class Cart extends Controller
         }
 
         $passData = input('get.');
-
         $validate = new CartListValidate();
         if ($validate ->check($passData) == false)
         {
