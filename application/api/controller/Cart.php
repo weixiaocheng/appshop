@@ -138,7 +138,7 @@ class Cart extends Controller
         $passData = input('post.');
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
-        dump($passHeader);
+
         $validata = new  CartDelectValidate();
         if ($validata ->check($passData) == false)
         {

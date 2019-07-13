@@ -7,7 +7,8 @@ class CartModifValidate extends Validate
 {
     protected $rule = [
         'cart_id' => 'require',
-        'quantity' => 'require|between:1,9999'
+        'quantity' => 'require|between:1,9999',
+        'token' => 'require',
     ];
 
     protected  $message = [
