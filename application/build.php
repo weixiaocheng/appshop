@@ -28,7 +28,9 @@ return [
             'ProductDB',
             'CartDB',
             'ShoppingCart',
-            'OrderDB'
+            'OrderDB',
+            'OrderAddressDB',
+            'OrderProuductID'
             ],
         'validate'   => [
             'User',

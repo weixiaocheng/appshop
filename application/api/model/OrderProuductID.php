@@ -3,11 +3,9 @@ namespace app\api\model;
 
 use think\Model;
 
-class OrderDB extends Model
+class OrderProuductID extends Model
 {
-    protected $table = 'order';
+    protected $table = "order_product";
 
     protected $connection = 'db_config';
-
-    protected $pk = 'order_id';
 }
