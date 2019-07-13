@@ -147,8 +147,8 @@ class Order extends Controller
         $orderProduct->product_id = $cart_obj['product_id'];
         $orderProduct->user_id = $user_id;
         $orderProduct->quantity = $cart_obj['quantity'];
-        $orderProduct->product_name = $cart_obj['product_name'];
-        $orderProduct->product_img = $cart_obj['product_img'];
+        $orderProduct->product_title = $cart_obj['product_name'];
+        $orderProduct->product_main_url = $cart_obj['product_img'];
         $orderProduct->price = $cart_obj['price'];
         $isSuccess = $orderProduct->save();
         if ($isSuccess == false)
