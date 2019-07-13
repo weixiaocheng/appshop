@@ -138,10 +138,11 @@ class Cart extends Controller
         $passData = input('post.');
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
+        dump($passHeader);
         $validata = new  CartDelectValidate();
         if ($validata ->check($passData) == false)
         {
-            return showJson([], 400 , true, '请使用post 进行网络请求');
+            return showJson([], 400 , true, $validata->getError());
         }
 
         # 获取用的的id

@@ -50,7 +50,7 @@ class Product extends Controller
         $resutl = $productModel::find($passData['product_id']);
         $skuModel = new SkuDB();
         $sku_list = $skuModel::where(['product_id' => $passData['product_id']])->select();
-//        dump($sku_list);
+        dump($sku_list);
         $resutl['sku_list'] = $sku_list;
         if (empty($resutl))
         {
