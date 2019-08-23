@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use think\Controller;
+use app\api\service\token;
 /**
  * @title 后台登录
  * Class User
@@ -33,6 +34,23 @@ class User extends Controller
         {
             return showJson([],400,true, $validata->getError());
         }
+
+        # 验证用户是否存在
+        $userinfo = \app\admin\model\User::get(['user_name'  =>  $passData['name']]);
+        if (empty($userinfo)) {
+            return showJson([],400,400, '用户不存在');
+        }
+
+        if ($userinfo["password"] === $passData["password"])
+        {
+            $token = token::generateToken();
+            $userinfo["token"] = $token;
+            \app\admin\model\User::update(["token" =>$token],["user_id" => $userinfo["user_id"]]);
+            return showJson($userinfo);
+        }else{
+            return showJson([],400,400, '账户密码错误');
+        }
+
         return showJson([]);
     }
 }
