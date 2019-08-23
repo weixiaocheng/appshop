@@ -41,7 +41,7 @@ class User extends Controller
             return showJson([],400,400, '用户不存在');
         }
 
-        if ($userinfo["password"] === $passData["password"])
+        if ($userinfo["user_pass"] === $passData["user_pass"])
         {
             $token = token::generateToken();
             $userinfo["token"] = $token;
