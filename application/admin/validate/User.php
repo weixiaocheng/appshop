@@ -7,6 +7,6 @@ class User extends Validate
 {
     protected $rule = [
         'name' => 'require',
-        'password' => 'require'
+        'user_pass' => 'require'
     ];
 }
