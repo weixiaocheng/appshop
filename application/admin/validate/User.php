@@ -6,7 +6,7 @@ use think\Validate;
 class User extends Validate
 {
     protected $rule = [
-        'contact' => 'require',
+        'name' => 'require',
         'password' => 'require'
     ];
 }
