@@ -1,6 +1,8 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\validate\userLiser;
+use app\api\model\BaseUser;
 use think\Controller;
 use app\api\service\token;
 /**
@@ -52,5 +54,32 @@ class User extends Controller
         }
 
         return showJson([]);
+    }
+
+
+    public function getUserList()
+    {
+        if ($this->request->isGet() == false)
+        {
+            return showJson([], 400);
+        }
+        $passData = input('get');
+        $passHeader = $this->request->header('token');
+        $passData['token'] = $passHeader;
+
+        $validata = new userLiser();
+        if ($validata ->check() == false)
+        {
+            return showJson([], 400, true, $validata->getError());
+        }
+
+        # 检验用户是否存在
+        $userinfo = \app\admin\model\User::get(['user_name'  =>  $passData['name']]);
+        if (empty($userinfo)) {
+            return showJson([],400,400, '用户不存在');
+        }
+
+        # 返回注册用户列表
+
     }
 }
