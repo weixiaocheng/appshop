@@ -70,7 +70,7 @@ class User extends Controller
         $passData['token'] = $passHeader;
         dump($passData);
         $validata = new UserList();
-        if ($validata ->check() == false)
+        if ($validata ->check($passData) == false)
         {
             return showJson([], 400, true, $validata->getError());
         }
