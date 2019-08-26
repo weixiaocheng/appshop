@@ -67,7 +67,7 @@ class User extends Controller
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
 
-        $validata = new userLiser();
+        $validata = new UserLiser();
         if ($validata ->check() == false)
         {
             return showJson([], 400, true, $validata->getError());
@@ -80,6 +80,10 @@ class User extends Controller
         }
 
         # 返回注册用户列表
+        $page_size = (int)$passData['page_size'];
+        $page_index = (int)$passData['page_index'];
 
+        $userList = BaseUser::limit(($page_index-1)*$page_size , $page_size);
+        return showJson($userList, 200, false, "获取用户列表成功");
     }
 }
