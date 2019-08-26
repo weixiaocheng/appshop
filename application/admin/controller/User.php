@@ -75,7 +75,7 @@ class User extends Controller
         }
 
         # 检验用户是否存在
-        $userinfo = \app\admin\model\User::get(['user_name'  =>  $passData['name']]);
+        $userinfo = \app\admin\model\User::get(['token'  =>  $passData['token']]);
         if (empty($userinfo)) {
             return showJson([],400,400, '用户不存在');
         }
