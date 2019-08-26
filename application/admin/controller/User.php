@@ -46,7 +46,7 @@ class User extends Controller
         if ($userinfo["user_pass"] === $passData["user_pass"])
         {
             $token = token::generateToken();
-            $userinfo["token"] = $token;
+            $userinfo["user_token"] = $token;
             \app\admin\model\User::update(["user_token" =>$token],["user_id" => $userinfo["user_id"]]);
             return showJson($userinfo);
         }else{
