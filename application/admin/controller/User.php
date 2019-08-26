@@ -2,6 +2,7 @@
 namespace app\admin\controller;
 
 use app\admin\validate\userLiser;
+use app\admin\validate\UserList;
 use app\api\model\BaseUser;
 use think\Controller;
 use app\api\service\token;
@@ -67,7 +68,7 @@ class User extends Controller
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
 
-        $validata = new UserLiser();
+        $validata = new UserList();
         if ($validata ->check() == false)
         {
             return showJson([], 400, true, $validata->getError());

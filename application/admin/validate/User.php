@@ -11,7 +11,7 @@ class User extends Validate
     ];
 }
 
-class UserLiser extends Validate
+class UserList extends Validate
 {
     protected  $rule = [
         'token' => 'require',
