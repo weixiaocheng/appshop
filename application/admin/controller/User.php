@@ -67,7 +67,7 @@ class User extends Controller
         $passData = input('get');
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
-
+        dump($passData);
         $validata = new UserList();
         if ($validata ->check() == false)
         {
