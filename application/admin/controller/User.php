@@ -65,6 +65,7 @@ class User extends Controller
             return showJson([], 400);
         }
         $passData = input('get');
+        dump($passData);
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
         dump($passData);
