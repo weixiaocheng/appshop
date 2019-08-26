@@ -1,7 +1,6 @@
 <?php
 namespace app\admin\controller;
 
-use app\admin\validate\userLiser;
 use app\admin\validate\UserList;
 use app\api\model\BaseUser;
 use think\Controller;
@@ -64,7 +63,7 @@ class User extends Controller
         {
             return showJson([], 400);
         }
-        $passData = input('get');
+        $passData = input('get.');
         dump($passData);
         $passHeader = $this->request->header('token');
         $passData['token'] = $passHeader;
