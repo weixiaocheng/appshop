@@ -47,7 +47,7 @@ class User extends Controller
         {
             $token = token::generateToken();
             $userinfo["token"] = $token;
-            \app\admin\model\User::update(["token" =>$token],["user_id" => $userinfo["user_id"]]);
+            \app\admin\model\User::update(["user_token" =>$token],["user_id" => $userinfo["user_id"]]);
             return showJson($userinfo);
         }else{
             return showJson([],400,400, '账户密码错误');
@@ -75,7 +75,7 @@ class User extends Controller
         }
 
         # 检验用户是否存在
-        $userinfo = \app\admin\model\User::get(['token'  =>  $passData['token']]);
+        $userinfo = \app\admin\model\User::get(['user_token'  =>  $passData['token']]);
         if (empty($userinfo)) {
             return showJson([],400,400, '用户不存在');
         }
