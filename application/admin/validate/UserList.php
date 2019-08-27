@@ -15,7 +15,7 @@ class UserList extends Validate
     protected  $rule = [
         'token' => 'require',
         'page_size' => 'number|between:1, 20',
-        'page_index' => 'require|number| >:0'
+        'page_index' => 'require|number| >=:0'
     ];
 
     protected $message = [
