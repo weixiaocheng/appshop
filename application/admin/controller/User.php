@@ -56,7 +56,19 @@ class User extends Controller
         return showJson([]);
     }
 
-
+    /**
+     * @title 获取用户列表
+     * @description
+     * @method GET
+     * @url /api/User/loginAdmin
+     *
+     * @param name:page_index type:int require:1 default:1 other: desc:当前页码
+     * @param name:page_size type:int require:1 default:0 other: desc:每页获取多少数据
+     *
+     * @Author: 微笑城
+     * Date: 2019/8/27 下午2:57
+     * @return array:数组值
+     */
     public function getUserList()
     {
         if ($this->request->isGet() == false)
