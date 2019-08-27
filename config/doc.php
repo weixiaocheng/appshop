@@ -16,7 +16,7 @@ return [
         'app\api\controller\Cart',
         'app\api\controller\Address',
         // 后台数据
-        'api\admin\Controller\User'
+        'app\admin\Controller\User'
     ],
     'filter_method' => [
         //过滤 不解析的方法名称
