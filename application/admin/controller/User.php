@@ -84,8 +84,8 @@ class User extends Controller
         $page_size = (int)$passData['page_size'];
         $page_index = (int)$passData['page_index'];
 
-//        $userList = BaseUser::limit(($page_index-1)*$page_size , $page_size);
-        $userList = BaseUser::all();
+        $userList = BaseUser::limit(($page_index-1)*$page_size , $page_size)->select();
+//        $userList = BaseUser::all();
         return showJson($userList, 200, false, "获取用户列表成功");
     }
 }
