@@ -83,7 +83,7 @@ class User extends Controller
         # 返回注册用户列表
         $page_size = (int)$passData['page_size'];
         $page_index = (int)$passData['page_index'];
-        if ($page_index == 0) {$page_index = 1};
+        if ($page_index == 0) $page_index = 1;
         $userList = BaseUser::limit(($page_index-1)*$page_size , $page_size)->select();
         return showJson($userList, 200, false, "获取用户列表成功");
     }
