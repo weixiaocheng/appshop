@@ -57,17 +57,18 @@ class User extends Controller
     }
 
     /**
-     * @title 获取用户列表
+     * @title  获取用户列表
      * @description
+     * @author 微笑城
+     * @url app\admin\controller
      * @method GET
-     * @url /api/User/loginAdmin
-     *
-     * @param name:page_index type:int require:1 default:1 other: desc:当前页码
-     * @param name:page_size type:int require:1 default:0 other: desc:每页获取多少数据
-     *
-     * @Author: 微笑城
-     * Date: 2019/8/27 下午2:57
+     * Date: 2019/8/27
+     * @param name:page_index type:int require:1 default:1 other: desc:当前页面
+     * @param name:page_size type:int require:0 default:10 other: desc:每页数据大小
      * @return array:数组值
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function getUserList()
     {
@@ -96,6 +97,8 @@ class User extends Controller
         $page_size = (int)$passData['page_size'];
         $page_index = (int)$passData['page_index'];
         if ($page_index == 0) $page_index = 1;
+        # 怕忘记传了
+        if ($page_size == 0) $page_size = 10;
         $userList = BaseUser::limit(($page_index-1)*$page_size , $page_size)->select();
         return showJson($userList, 200, false, "获取用户列表成功");
     }
