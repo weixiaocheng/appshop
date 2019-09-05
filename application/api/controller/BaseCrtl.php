@@ -13,6 +13,29 @@ use think\Controller;
  */
 class Basecrtl extends Controller
 {
+
+    public function upload() {
+        if ($_FILES['file']["error"])
+        {
+            return showJson([], 500);
+        }
+
+
+        dump($_FILES['file']);
+
+        if (empty($_FILES['file']) == true)
+        {
+            return showJson([], 500, true , '没有获取到文件');
+        }
+
+        if($_FILES["file"]["type"]=="image/jpeg"||$_FILES["file"]["type"]=="image/jpg" && $_FILES["file"]["type"]=="image/png"&&$_FILES["file"]["size"]<1024000) {
+            $filename = "static/file/".date("YmdHis").$_FILES["file"]["name"];
+            dump($filename);
+            move_uploaded_file($_FILES["file"]["tmp_name"],$filename);
+            return showJson([],200);
+        }
+    }
+
     /**
      * @title  发送验证码
      * @description
