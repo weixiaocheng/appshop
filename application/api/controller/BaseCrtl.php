@@ -21,7 +21,6 @@ class Basecrtl extends Controller
         }
 
 
-        dump($_FILES['file']);
 
         if (empty($_FILES['file']) == true)
         {
@@ -30,9 +29,20 @@ class Basecrtl extends Controller
 
         if($_FILES["file"]["type"]=="image/jpeg"||$_FILES["file"]["type"]=="image/jpg" && $_FILES["file"]["type"]=="image/png"&&$_FILES["file"]["size"]<1024000) {
             $filename = "static/file/".date("YmdHis").$_FILES["file"]["name"];
-            dump($filename);
-            move_uploaded_file($_FILES["file"]["tmp_name"],$filename);
-            return showJson([],200);
+            $dirPath = "static/file";
+            if (!file_exists($dirPath))
+            {
+                mkdir($dirPath, 0777, true);
+            }
+            $success = move_uploaded_file($_FILES["file"]["tmp_name"],$filename);
+            $data = [];
+            $data["imageUrl"] = $filename;
+            if ($success){
+                return showJson($data,200);
+            }else{
+                return showJson([],500);
+            }
+
         }
     }
 
