@@ -20,8 +20,6 @@ class Basecrtl extends Controller
             return showJson([], 500);
         }
 
-
-
         if (empty($_FILES['file']) == true)
         {
             return showJson([], 500, true , '没有获取到文件');
@@ -34,9 +32,13 @@ class Basecrtl extends Controller
             {
                 mkdir($dirPath, 0777, true);
             }
+
+
+            $urlPath = "http://".$_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"]."/";
+
             $success = move_uploaded_file($_FILES["file"]["tmp_name"],$filename);
             $data = [];
-            $data["imageUrl"] = $filename;
+            $data["imageUrl"] = $urlPath.$filename;
             if ($success){
                 return showJson($data,200);
             }else{
