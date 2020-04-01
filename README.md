@@ -9,3 +9,9 @@
 2. admin 目录下 
 1. 后台 admin-lte 搭建
 2. 上传图片
+
+
+项目说明 : 
+1. 框架使用的是 thinkphp5 来创建的 
+2. 后端管理界面使用的是 angular7  + admin-lte 搭建的
+3. 使用第三方框架 : weiwei 实现了自动 api 文档  
